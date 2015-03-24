@@ -22,7 +22,7 @@ login = (username, password, callback) ->
       else
         callback body
 
-account = (username, password, callback) ->
+getActiveConnections = (username, password, callback) ->
   form =
     action: 'login'
     user_login_name: username
@@ -33,16 +33,47 @@ account = (username, password, callback) ->
     (error, response, body) ->
       callback(error) if error
       callback(response) if response.statusCode != 200 or response.statusMessage != 'OK'
-      request.get
+      request.get 'http://usereg.tsinghua.edu.cn/online_user_ipv4.php', (error, response, body) ->
+        callback(error) if error
+        callback(response) if response.statusCode != 200
+        $ = cheerio.load body
+        ret = []
+        $('.maintd input').each (_, ele) ->
+          match = /'([0-9.]+)','(\w+)'/.exec $(ele).attr('onclick')
+          ret.push
+            ip: match[1]
+            checksum: match[2]
+        callback null, ret
+
+logout = (username, password, ip, checksum, callback) ->
+  form =
+    action: 'login'
+    user_login_name: username
+    user_password: md5(password).toString()
+  request.post
+    url: 'http://usereg.tsinghua.edu.cn/do.php'
+    form: form
+    (error, response, body) ->
+      callback(error) if error
+      callback(response) if response.statusCode != 200 or response.statusMessage != 'OK'
+      form =
+        action: 'drop'
+        user_ip: ip
+        checksum: checksum
+      request.post
         url: 'http://usereg.tsinghua.edu.cn/online_user_ipv4.php'
+        form: form
         (error, response, body) ->
           callback(error) if error
-          callback(response) if response.statusCode != 200
-          $ = cheerio.load body
-          $('.maintd input').each (_, ele) ->
-            console.log $(ele).attr('onclick')
+          callback(response) if response.statusCode != 200 or response.statusMessage != 'OK'
+          callback null
 
 a = require './secret.json'
-account a.username, a.password, (error, usage) ->
+# getActiveConnections a.username, a.password, (error, usage) ->
+#   throw error if error
+#   for i in usage
+#     logout a.username, a.password, i.ip, i.checksum, (error) ->
+#       throw error if error
+login a.username, a.password, (error, usage) ->
   throw error if error
   console.log usage
