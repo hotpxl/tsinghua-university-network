@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "coffee app.coffee",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "coffee app.coffee"
   },
   "author": "Yutian Li <hotpxless@gmail.com>",
   "license": "MIT",
@@ -13,7 +12,6 @@
     "cheerio": "",
     "coffee-script": "",
     "tough-cookie": "",
-    "lodash": "",
     "crypto-js": ""
   }
 }
