@@ -1,7 +1,7 @@
-request = require('request').defaults
-  jar: true
 md5 = require 'crypto-js/md5'
 cheerio = require 'cheerio'
+request = require('request').defaults
+  jar: true
 
 exports.login = login = (username, password, callback) ->
   form =
