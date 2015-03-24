@@ -1,7 +1,7 @@
 {
   "name": "tsinghua-university-network",
   "version": "1.0.0",
-  "description": "",
+  "description": "An interface of Tsinghua University Network for JavaScript",
   "scripts": {
     "start": "coffee index.coffee"
   },
