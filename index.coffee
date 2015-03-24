@@ -1,5 +1,5 @@
-md5 = require 'crypto-js/md5'
 cheerio = require 'cheerio'
+md5 = require 'crypto-js/md5'
 request = require('request').defaults
   jar: true
 
