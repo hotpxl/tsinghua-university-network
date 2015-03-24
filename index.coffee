@@ -69,11 +69,12 @@ exports.logout = logout = (username, password, ip, checksum, callback) ->
           callback null
 
 a = require './secret.json'
-# getActiveConnections a.username, a.password, (error, usage) ->
-#   throw error if error
-#   for i in usage
-#     logout a.username, a.password, i.ip, i.checksum, (error) ->
-#       throw error if error
-login a.username, a.password, (error, usage) ->
+getActiveConnections a.username, a.password, (error, usage) ->
   throw error if error
   console.log usage
+  for i in usage
+    logout a.username, a.password, i.ip, i.checksum, (error) ->
+      throw error if error
+# login a.username, a.password, (error, usage) ->
+#   throw error if error
+#   console.log usage

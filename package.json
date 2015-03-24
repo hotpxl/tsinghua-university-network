@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "coffee app.coffee"
+    "start": "coffee index.coffee"
   },
   "author": "Yutian Li <hotpxless@gmail.com>",
   "license": "MIT",
