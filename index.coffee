@@ -3,7 +3,7 @@ request = require('request').defaults
 md5 = require 'crypto-js/md5'
 cheerio = require 'cheerio'
 
-login = (username, password, callback) ->
+exports.login = login = (username, password, callback) ->
   form =
     drop: 0
     type: 1
@@ -22,7 +22,7 @@ login = (username, password, callback) ->
       else
         callback body
 
-getActiveConnections = (username, password, callback) ->
+exports.getActiveConnections = getActiveConnections = (username, password, callback) ->
   form =
     action: 'login'
     user_login_name: username
@@ -45,7 +45,7 @@ getActiveConnections = (username, password, callback) ->
             checksum: match[2]
         callback null, ret
 
-logout = (username, password, ip, checksum, callback) ->
+exports.logout = logout = (username, password, ip, checksum, callback) ->
   form =
     action: 'login'
     user_login_name: username
