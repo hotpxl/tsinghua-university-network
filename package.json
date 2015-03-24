@@ -2,16 +2,18 @@
   "name": "tsinghua-university-network",
   "version": "1.0.0",
   "description": "An interface of Tsinghua University Network for JavaScript",
-  "scripts": {
-    "start": "coffee index.coffee"
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hotpxl/tsinghua-university-network"
   },
   "author": "Yutian Li <hotpxless@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "request": "",
     "cheerio": "",
     "coffee-script": "",
-    "tough-cookie": "",
-    "crypto-js": ""
+    "crypto-js": "",
+    "request": "",
+    "tough-cookie": ""
   }
 }
